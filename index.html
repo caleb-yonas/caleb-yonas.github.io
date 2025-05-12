@@ -1,1 +1,128 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Big Red Button</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* General button styling */
+      .button {
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+      }
+
+      /* Specific button colors */
+      .red-button {
+        background-color: red;
+        color: white;
+        width: 400px; /* Set width for the circle */
+        height: 400px; /* Set height for the circle */
+        border-radius: 50%; /* Make it a circle */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .gray-button {
+        background-color: gray;
+        color: white;
+      }
+
+      .blue-button {
+        background-color: blue;
+        color: white;
+      }
+
+      .green-button {
+        background-color: green;
+        color: white;
+      }
+
+      .red-button:hover, .gray-button:hover, .blue-button:hover, .green-button:hover {
+        transform: scale(1.05);
+      }
+
+      .red-button:active, .gray-button:active, .blue-button:active, .green-button:active {
+        transform: scale(0.95);
+      }
+
+      /* Add spacing between buttons */
+      .button-container {
+        margin-top: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="position: fixed; bottom: 190px; width: 100%; text-align: center;">
+      <p>A way to bring awareness to your urges</p>
+    </div>
+
+    <button class="button red-button" onclick="playSound()">The Big Red Button</button>
+    <audio id="click-sound" src="sfx/click-sound.mp3"></audio>
+    <div style="position: fixed; bottom: 100px; width: 100%; text-align: center;">
+      <!-- <button class="button gray-button" onclick="location.href='history.html'">History</button> -->
+    </div>
+    <div style="position: fixed; bottom: 150px; width: 100%; text-align: center;">
+      <button class="button gray-button" onclick="resetCount()">Reset Count</button>
+    </div>
+    <div style="position: fixed; bottom: 100px; width: 100%; text-align: center;">
+      <button class="button gray-button" onclick="toggleMute()">Mute Sound</button>
+    </div>
+    
+    <script>
+      var x = 0;
+      var isMuted = false;
+
+      function playSound() {
+        if (!isMuted) {
+          document.getElementById("click-sound").play();
+        }
+        compute();
+        updateHistory();
+      }
+
+      function compute() {
+        x += 1;
+        alert("The Big Red Button has been pressed " + x + " times.");
+      }
+
+      function updateHistory() {
+        // Save the updated count to localStorage
+        localStorage.setItem("buttonPressCount", x);
+      }
+
+      function toggleMute() {
+        isMuted = !isMuted;
+        alert(isMuted ? "Sound muted." : "Sound unmuted.");
+      }
+
+      function resetCount() {
+        x = 0; // Reset the local counter
+        localStorage.setItem("buttonPressCount", x); // Reset the count in localStorage
+        alert("The count has been reset!");
+      }
+
+      const backButton = document.getElementById('backButton');
+      backButton.addEventListener('click', () => {
+          window.location.href = 'index.html'; // Replace 'index.html' with the actual file name or URL of the Big Red Button page
+      });
+
+      const resetButton = document.getElementById('historyButton');
+      resetButton.addEventListener('click', () => {
+          const today = new Date().toLocaleDateString(); // Get today's date as a string
+          const currentCount = buttonSavedCount; // Retrieve the current count
+          dailyCounts += `${currentCount}/`; // Append the count to the dailyCounts string with a "/"
+          localStorage.setItem('dailyCounts', dailyCounts); // Save updated daily counts to localStorage
+
+          alert(`Daily counts updated: ${dailyCounts}`); // Notify the user
+      });
+    </script>
+  </body>
+</html>
