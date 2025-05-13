@@ -77,7 +77,7 @@
     </div>
     
     <script>
-      var x = 0;
+      var x = parseInt(localStorage.getItem("buttonPressCount")) || 0; // Retrieve saved count or initialize to 0
       var isMuted = false;
 
       function playSound() {
@@ -85,17 +85,12 @@
           document.getElementById("click-sound").play();
         }
         compute();
-        updateHistory();
       }
 
       function compute() {
-        x += 1;
+        x += 1; // Increment the count
+        localStorage.setItem("buttonPressCount", x); // Save the updated count to localStorage
         alert("The Big Red Button has been pressed " + x + " times.");
-      }
-
-      function updateHistory() {
-        // Save the updated count to localStorage
-        localStorage.setItem("buttonPressCount", x);
       }
 
       function toggleMute() {
@@ -109,20 +104,6 @@
         alert("The count has been reset!");
       }
 
-      const backButton = document.getElementById('backButton');
-      backButton.addEventListener('click', () => {
-          window.location.href = 'index.html'; // Replace 'index.html' with the actual file name or URL of the Big Red Button page
-      });
-
-      const resetButton = document.getElementById('historyButton');
-      resetButton.addEventListener('click', () => {
-          const today = new Date().toLocaleDateString(); // Get today's date as a string
-          const currentCount = buttonSavedCount; // Retrieve the current count
-          dailyCounts += `${currentCount}/`; // Append the count to the dailyCounts string with a "/"
-          localStorage.setItem('dailyCounts', dailyCounts); // Save updated daily counts to localStorage
-
-          alert(`Daily counts updated: ${dailyCounts}`); // Notify the user
-      });
     </script>
   </body>
 </html>

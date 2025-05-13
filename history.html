@@ -63,7 +63,7 @@
     <div class="calendar">
         <script>
             const calendar = document.querySelector('.calendar');
-            let buttonSavedCount = localStorage.getItem('buttonSavedCount') || 0;
+            let buttonSavedCount = parseInt(localStorage.getItem('buttonSavedCount')) || 0; // Retrieve saved count or initialize to 0
             let dailyCounts = localStorage.getItem('dailyCounts') || ""; // Retrieve daily counts history
 
             const days = calendar.querySelectorAll('.day');
@@ -74,13 +74,16 @@
                 const dayOfMonth = today.getDate();
 
                 days.forEach((day, index) => {
-                    const level = (index + dayOfWeek + dayOfMonth + parseInt(buttonSavedCount)) % 5; // Include saved count
+                    const level = (index + dayOfWeek + dayOfMonth + buttonSavedCount) % 5; // Include saved count
                     day.dataset.level = level;
                     day.title = `${level} contribution${level === 1 ? '' : 's'}`;
                 });
+            }
 
+            function incrementCount() {
                 buttonSavedCount++;
                 localStorage.setItem('buttonSavedCount', buttonSavedCount); // Save updated count
+                updateDays(); // Update the calendar
             }
 
             function resetCount() {
@@ -94,6 +97,9 @@
                 updateDays(); // Update the calendar to reflect the reset count
                 alert(`Count has been reset! Daily counts: ${dailyCounts}`); // Notify the user
             }
+
+            // Initialize the calendar on page load
+            updateDays();
         </script>
     </div>
 
