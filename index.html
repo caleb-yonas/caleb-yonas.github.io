@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale:1.0" />
     <title>The Big Red Button</title>
     <link rel="stylesheet" href="styles.css" />
     <style>
@@ -17,16 +17,16 @@
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
 
-      /*button colors*/
+      /* Button colors */
       .red-button {
         background-color: red;
         color: white;
-        width:400px; /* Set width for the circle */
-        height:  400px; /* Set height for the circle */
+        width: 400px; /* Set width for the circle */
+        height: 400px; /* Set height for the circle */
         border-radius: 50%; /* Make it a circle */
-        display: flex;;
+        display: flex;
         justify-content: center;
-        align-items: center; 
+        align-items: center;
       }
 
       .gray-button {
@@ -34,22 +34,13 @@
         color: white;
       }
 
-      .blue-button {
-        background-color: blue;
-        color: white;
-      }
-
-      .green-button {
-        background-color: green;
-        color: white;
-      }
-
-      .red-button:hover, .gray-button:hover, .blue-button:hover, .green-button:hover {
+      .red-button:hover, .gray-button:hover {
         transform: scale(1.05);
       }
 
-      .red-button:active, .gray-button:active, .blue-button:active, .green-button:active {
-        transform: scale(0.95);
+      
+      .red-button:active, .gray-button:active {
+        transform: scale(0.95); 
       }
 
       /* Add spacing between buttons */
