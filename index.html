@@ -17,16 +17,16 @@
         transition: background-color 0.3s ease, transform 0.2s ease;
       }
 
-      /* Specific button colors */
+      /*button colors*/
       .red-button {
         background-color: red;
         color: white;
-        width: 400px; /* Set width for the circle */
-        height: 400px; /* Set height for the circle */
+        width:400px; /* Set width for the circle */
+        height:  400px; /* Set height for the circle */
         border-radius: 50%; /* Make it a circle */
-        display: flex;
+        display: flex;;
         justify-content: center;
-        align-items: center;
+        align-items: center; 
       }
 
       .gray-button {
@@ -61,7 +61,7 @@
   </head>
   <body>
     <div style="position: fixed; bottom: 190px; width: 100%; text-align: center;">
-      <p>A way to bring awareness to your urges</p>
+      <p>Bring awareness</p>
     </div>
 
     <button class="button red-button" onclick="playSound()">The Big Red Button</button>
@@ -90,18 +90,18 @@
       function compute() {
         x += 1; // Increment the count
         localStorage.setItem("buttonPressCount", x); // Save the updated count to localStorage
-        alert("The Big Red Button has been pressed " + x + " times.");
+        alert(x + " times.");
       }
 
       function toggleMute() {
         isMuted = !isMuted;
-        alert(isMuted ? "Sound muted." : "Sound unmuted.");
+        alert(isMuted ? "Muted." : "Unmuted.");
       }
 
       function resetCount() {
         x = 0; // Reset the local counter
         localStorage.setItem("buttonPressCount", x); // Reset the count in localStorage
-        alert("The count has been reset!");
+        alert("Reset successful.");
       }
 
     </script>
